@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gửi Bi Đáng Yêu Nhất Hệ Mặt Trời 💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts hỗ trợ tiếng Việt mượt mà, tròn trịa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Quicksand', 'sans-serif'],
+                        handwriting: ['Dancing Script', 'cursive'],
+                    },
+                    colors: {
+                        pastel: {
+                            50: '#fff5f7',
+                            100: '#ffe3ec',
+                            200: '#ffc6d9',
+                            300: '#ff9ebb',
+                            400: '#ff6b9b',
+                            500: '#fb3b7c',
+                            600: '#e81c62',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffd6e7 50%, #ffc2dc 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng nền lấp lánh nhẹ */
+        .bg-pattern {
+            background-image: radial-gradient(#ff8dafff 1.2px, transparent 1.2px), radial-gradient(#ffb3c6 1.2px, #fff0f5 1.2px);
+            background-size: 48px 48px;
+            background-position: 0 0, 24px 24px;
+            opacity: 0.35;
+        }
+
+        /* Trái tim bay lơ lửng */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.75;
+            }
+            85% {
+                opacity: 0.75;
+            }
+            100% {
+                transform: translateY(-15vh) scale(1.15) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp linear infinite;
+        }
+
+        /* Hiệu ứng nhịp đập trái tim */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.14); }
+        }
+
+        .animate-heartbeat {
+            animation: heartbeat 1.6s infinite ease-in-out;
+        }
+
+        /* Hiệu ứng nhún nhảy dễ thương cho linh vật */
+        @keyframes cuteBounce {
+            0%, 100% { transform: translateY(0px) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1.5deg); }
+        }
+
+        .animate-cute-bounce {
+            animation: cuteBounce 2.8s infinite ease-in-out;
+        }
+
+        /* Hiệu ứng lắc lư phong bì */
+        @keyframes envelopeWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-3deg) scale(1.03); }
+            75% { transform: rotate(3deg) scale(1.03); }
+        }
+
+        .animate-wiggle {
+            animation: envelopeWiggle 2.2s infinite ease-in-out;
+        }
+
+        /* Glassmorphism Card */
+        .cute-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 3px solid rgba(255, 198, 217, 0.9);
+            box-shadow: 0 20px 50px rgba(251, 59, 124, 0.16), 0 0 0 6px rgba(255, 255, 255, 0.45);
+        }
+
+        /* Nút bấm kẹo ngọt */
+        .btn-yes {
+            background: linear-gradient(135deg, #ff7eb3 0%, #ff4d8d 100%);
+            box-shadow: 0 8px 22px rgba(255, 77, 141, 0.4), inset 0 -3px 0 rgba(0, 0, 0, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-yes:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 28px rgba(255, 77, 141, 0.55), inset 0 -3px 0 rgba(0, 0, 0, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.7);
+        }
+        .btn-yes:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ffffff 0%, #ffeef4 100%);
+            border: 2px solid #ffb6c1;
+            box-shadow: 0 5px 15px rgba(255, 158, 187, 0.25);
+            transition: left 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.2s ease;
+        }
+
+        /* Trái tim nổ tung khi click */
+        @keyframes popBurst {
+            0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+        .click-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: popBurst 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Thanh cuộn dễ thương */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff0f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff9ebb;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6">
+
+    <!-- Lớp nền chấm bi -->
+    <div class="fixed inset-0 bg-pattern pointer-events-none z-0"></div>
+
+    <!-- Container chứa trái tim bay lơ lửng -->
+    <div id="floating-hearts-container" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- Canvas pháo hoa trái tim khi Đồng ý -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-40 hidden"></canvas>
+
+    <!-- Thanh điều khiển trên cùng: Nhạc & Đổi lời nhắn -->
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2.5">
+        <button id="btn-sound" onclick="toggleSound()" class="bg-white/90 hover:bg-white text-pastel-500 border-2 border-pastel-200 rounded-full px-3.5 py-2 shadow-md flex items-center gap-1.5 text-xs sm:text-sm font-bold transition transform hover:scale-105 active:scale-95" title="Bật/Tắt âm thanh dễ thương">
+            <span id="sound-icon">🔊</span>
+            <span id="sound-text" class="hidden sm:inline">Âm thanh</span>
+        </button>
+    </div>
+
+    <!-- ==========================================
+         MÀN HÌNH 1: PHONG BÌ THƯ GỬI BI
+    =========================================== -->
+    <div id="step-envelope" class="relative z-10 w-full max-w-md mx-auto text-center transition-all duration-500">
+        <div class="cute-card rounded-[2rem] p-6 sm:p-8 flex flex-col items-center relative overflow-hidden">
+            <!-- Nơ trang trí góc -->
+            <div class="absolute -top-6 -left-6 w-24 h-24 bg-pastel-200/50 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-6 -right-6 w-28 h-28 bg-pastel-300/40 rounded-full blur-xl pointer-events-none"></div>
+
+            <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-pastel-100 text-pastel-600 text-xs sm:text-sm font-bold mb-4 shadow-sm border border-pastel-200">
+                <span class="animate-ping inline-block w-2 h-2 rounded-full bg-pastel-500 mr-1"></span>
+                Ting ting! Có 1 bức thư mật gửi cho Bi
+            </span>
+
+            <h1 class="font-handwriting text-4xl sm:text-5xl text-pastel-600 font-bold mb-2 drop-shadow-sm">
+                Hello Bi đáng yêu! 🌸
+            </h1>
+            <p class="text-slate-600 text-sm sm:text-base mb-6 font-medium">
+                Tớ có một điều siêu quan trọng giấu trong chiếc phong bì màu hồng này, Bi chạm vào để mở ra xem nha!
+            </p>
+
+            <!-- Minh họa Phong Bì Tương Tác -->
+            <div onclick="openEnvelope()" class="cursor-pointer group relative my-2 animate-wiggle">
+                <div class="w-56 h-40 sm:w-64 sm:h-44 bg-gradient-to-b from-pastel-200 to-pastel-300 rounded-3xl shadow-lg border-4 border-white flex items-center justify-center relative overflow-hidden transition-transform duration-300 group-hover:scale-105">
+                    <!-- Nắp phong bì -->
+                    <svg class="absolute top-0 left-0 w-full h-24 text-pastel-400/70" viewBox="0 0 100 50" preserveAspectRatio="none">
+                        <polygon points="0,0 100,0 50,45" fill="currentColor"/>
+                    </svg>
+                    <!-- Lá thư nhô lên -->
+                    <div class="w-44 h-28 bg-white rounded-2xl shadow-inner flex flex-col items-center justify-center p-3 transform translate-y-2 group-hover:-translate-y-1 transition-transform duration-300 border border-pastel-100">
+                        <span class="text-xs font-bold text-pastel-400 tracking-wider uppercase">Dành riêng cho</span>
+                        <span class="font-handwriting text-3xl font-bold text-pastel-600 mt-0.5">Em bé Bi 💕</span>
+                    </div>
+                    <!-- Tem niêm phong trái tim -->
+                    <div class="absolute bottom-4 w-12 h-12 rounded-full bg-pastel-500 text-white flex items-center justify-center shadow-md border-2 border-white animate-heartbeat">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="openEnvelope()" class="btn-yes text-white font-bold text-base sm:text-lg px-8 py-3.5 rounded-full mt-6 flex items-center gap-2">
+                <span>Mở thư ngay</span>
+                <span class="text-xl">💌</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MÀN HÌNH 2: LỜI TỎ TÌNH & NÚT TƯƠNG TÁC
+    =========================================== -->
+    <div id="step-confession" class="relative z-10 w-full max-w-lg mx-auto text-center hidden opacity-0 transition-all duration-500 scale-95">
+        <div class="cute-card rounded-[2.25rem] p-6 sm:p-8 flex flex-col items-center relative">
+            
+            <!-- Badge nhỏ xinh trên đầu -->
+            <div class="flex items-center gap-2 bg-pastel-50 border border-pastel-200 px-4 py-1 rounded-full text-pastel-600 text-xs sm:text-sm font-bold mb-3 shadow-sm">
+                <span>🍓</span>
+                <span id="mood-status">Gấu nhỏ đang hồi hộp chờ câu trả lời của Bi...</span>
+            </div>
+
+            <!-- Linh vật Gấu Bông Pastel SVG (Biểu cảm thay đổi theo tương tác) -->
+            <div class="w-40 h-40 sm:w-44 sm:h-44 relative my-1 flex items-center justify-center animate-cute-bounce">
+                <!-- Vòng hào quang hồng phía sau -->
+                <div class="absolute inset-2 bg-gradient-to-tr from-pastel-200/70 to-pastel-100/70 rounded-full blur-md"></div>
+                
+                <!-- SVG Linh Vật: Chế độ Ngại Ngùng Đáng Yêu (Mặc định) -->
+                <svg id="mascot-shy" class="w-full h-full relative z-10 drop-shadow-md" viewBox="0 0 200 200">
+                    <!-- Tai gấu -->
+                    <circle cx="55" cy="55" r="24" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <circle cx="55" cy="55" r="13" fill="#ffc6d9"/>
+                    <circle cx="145" cy="55" r="24" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <circle cx="145" cy="55" r="13" fill="#ffc6d9"/>
+                    <!-- Thân gấu -->
+                    <ellipse cx="100" cy="155" rx="48" ry="36" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <!-- Đầu gấu -->
+                    <circle cx="100" cy="95" r="56" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <!-- Má hồng -->
+                    <ellipse cx="62" cy="102" rx="12" ry="7" fill="#ff8daf" opacity="0.7"/>
+                    <ellipse cx="138" cy="102" rx="12" ry="7" fill="#ff8daf" opacity="0.7"/>
+                    <!-- Mắt long lanh -->
+                    <circle cx="75" cy="88" r="7" fill="#4a2c3a"/>
+                    <circle cx="73" cy="85" r="2.5" fill="#fff"/>
+                    <circle cx="125" cy="88" r="7" fill="#4a2c3a"/>
+                    <circle cx="123" cy="85" r="2.5" fill="#fff"/>
+                    <!-- Mũi & Miệng mỉm cười -->
+                    <ellipse cx="100" cy="96" rx="6" ry="4.5" fill="#ff6b9b"/>
+                    <path d="M 93 104 Q 100 111 107 104" fill="none" stroke="#4a2c3a" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Trái tim ôm trước ngực -->
+                    <path class="animate-heartbeat" style="transform-origin: 100px 145px;" d="M100 172 C100 172 68 150 68 132 C68 120 78 113 88 113 C95 113 100 119 100 123 C100 119 105 113 112 113 C122 113 132 120 132 132 C132 150 100 172 100 172 Z" fill="#fb3b7c" stroke="#fff" stroke-width="3"/>
+                    <!-- Tay ôm tim -->
+                    <ellipse cx="70" cy="142" rx="14" ry="10" transform="rotate(25 70 142)" fill="#fff" stroke="#ff9ebb" stroke-width="3.5"/>
+                    <ellipse cx="130" cy="142" rx="14" ry="10" transform="rotate(-25 130 142)" fill="#fff" stroke="#ff9ebb" stroke-width="3.5"/>
+                </svg>
+
+                <!-- SVG Linh Vật: Chế độ Mếu Máo Năn Nỉ (Khi Bi định bấm Không đồng ý) -->
+                <svg id="mascot-plead" class="w-full h-full relative z-10 drop-shadow-md hidden" viewBox="0 0 200 200">
+                    <!-- Tai gấu cụp xuống chút -->
+                    <circle cx="50" cy="60" r="23" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <circle cx="50" cy="60" r="12" fill="#ffc6d9"/>
+                    <circle cx="150" cy="60" r="23" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <circle cx="150" cy="60" r="12" fill="#ffc6d9"/>
+                    <!-- Thân gấu -->
+                    <ellipse cx="100" cy="155" rx="48" ry="36" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <!-- Đầu gấu -->
+                    <circle cx="100" cy="95" r="56" fill="#fff" stroke="#ff9ebb" stroke-width="4"/>
+                    <!-- Má hồng -->
+                    <ellipse cx="62" cy="104" rx="13" ry="7.5" fill="#ff8daf" opacity="0.8"/>
+                    <ellipse cx="138" cy="104" rx="13" ry="7.5" fill="#ff8daf" opacity="0.8"/>
+                    <!-- Lông mày buồn -->
+                    <path d="M 65 76 Q 75 72 82 78" fill="none" stroke="#4a2c3a" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M 135 76 Q 125 72 118 78" fill="none" stroke="#4a2c3a" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Mắt rưng rưng long lanh -->
+                    <circle cx="75" cy="90" r="8.5" fill="#4a2c3a"/>
+                    <circle cx="72" cy="87" r="3.5" fill="#fff"/>
+                    <circle cx="78" cy="93" r="1.8" fill="#fff"/>
+                    <circle cx="125" cy="90" r="8.5" fill="#4a2c3a"/>
+                    <circle cx="122" cy="87" r="3.5" fill="#fff"/>
+                    <circle cx="128" cy="93" r="1.8" fill="#fff"/>
+                    <!-- Giọt nước mắt long lanh -->
+                    <path d="M 66 98 Q 63 108 67 110 Q 71 108 68 98 Z" fill="#60a5fa"/>
+                    <path d="M 134 98 Q 137 108 133 110 Q 129 108 132 98 Z" fill="#60a5fa"/>
+                    <!-- Miệng mếu -->
+                    <ellipse cx="100" cy="97" rx="5.5" ry="4" fill="#ff6b9b"/>
+                    <path d="M 92 109 Q 100 103 108 109" fill="none" stroke="#4a2c3a" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Hai tay chắp lại năn nỉ -->
+                    <ellipse cx="88" cy="138" rx="13" ry="9" transform="rotate(-20 88 138)" fill="#fff" stroke="#ff9ebb" stroke-width="3.5"/>
+                    <ellipse cx="112" cy="138" rx="13" ry="9" transform="rotate(20 112 138)" fill="#fff" stroke="#ff9ebb" stroke-width="3.5"/>
+                </svg>
+            </div>
+
+            <!-- Tiêu đề & Lời nhắn ngọt ngào gửi Bi -->
+            <h2 class="font-handwriting text-3xl sm:text-4xl font-bold text-pastel-600 mt-1 mb-3">
+                Gửi Bi thương mến của tớ 🌷
+            </h2>
+
+            <div class="bg-pastel-50/90 border-2 border-pastel-200/80 rounded-2xl p-4 sm:p-5 text-slate-700 text-sm sm:text-base leading-relaxed mb-5 shadow-inner relative">
+                <p id="love-letter-text" class="font-medium">
+                    Từ ngày có <span class="text-pastel-600 font-bold">Bi</span> xuất hiện, mỗi ngày của tớ đều ngập tràn nắng ấm và tiếng cười. Tớ thích nụ cười của Bi, thích cả những lúc Bi giận dỗi đáng yêu nữa. Thế giới ngoài kia dù rộng lớn bao nhiêu, tớ cũng chỉ muốn nắm tay Bi đi qua mọi mùa thương nhớ...
+                </p>
+                <p class="font-bold text-pastel-600 text-base sm:text-lg mt-3">
+                    Bi ơi, đồng ý làm người yêu của tớ nha? 💖
+                </p>
+            </div>
+
+            <!-- Bộ đếm số lần Bi định từ chối (ẩn lúc đầu) -->
+            <p id="dodge-hint" class="text-xs sm:text-sm text-pastel-500 font-semibold mb-3 hidden">
+                Nút "Không đồng ý" đã sợ quá phải chạy trốn <span id="dodge-count" class="font-bold underline">0</span> lần rồi kìa 😝
+            </p>
+
+            <!-- Khu vực 2 Nút tương tác -->
+            <div id="buttons-area" class="w-full min-h-[90px] sm:min-h-[100px] flex flex-wrap items-center justify-center gap-4 relative mt-1">
+                <!-- Nút Đồng Ý -->
+                <button id="btn-yes" onclick="acceptLove()" class="btn-yes text-white font-bold text-base sm:text-lg px-7 py-3.5 rounded-full flex items-center justify-center gap-2 z-20 cursor-pointer">
+                    <span>Đồng ý luôn!</span>
+                    <span class="text-xl animate-bounce">💖</span>
+                </button>
+
+                <!-- Nút Không Đồng Ý (Chạy trốn) -->
+                <button id="btn-no" class="btn-no text-slate-600 font-bold text-sm sm:text-base px-6 py-3.5 rounded-full z-30 cursor-pointer select-none">
+                    Không đồng ý 😢
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MÀN HÌNH 3: CHÚC MỪNG KHI BI ĐỒNG Ý
+    =========================================== -->
+    <div id="step-success" class="relative z-10 w-full max-w-lg mx-auto text-center hidden opacity-0 transition-all duration-500 scale-95">
+        <div class="cute-card rounded-[2.25rem] p-6 sm:p-8 flex flex-col items-center relative overflow-hidden">
+            
+            <div class="inline-flex items-center gap-1.5 bg-pastel-100 text-pastel-600 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold mb-3 border border-pastel-200">
+                <span>🎉</span>
+                <span>Chính thức chốt đơn trái tim của Bi!</span>
+                <span>🎉</span>
+            </div>
+
+            <!-- Linh Vật Hạnh Phúc Vỡ Òa -->
+            <div class="w-44 h-44 relative my-1 flex items-center justify-center animate-cute-bounce">
+                <div class="absolute inset-0 bg-pastel-200/60 rounded-full blur-xl animate-pulse"></div>
+                <svg class="w-full h-full relative z-10 drop-shadow-md" viewBox="0 0 200 200">
+                    <!-- Trái tim bay xung quanh đầu gấu -->
+                    <path class="animate-heartbeat" d="M35 55 C35 55 20 43 20 33 C20 27 25 23 30 23 C33 23 35 26 35 28 C35 26 37 23 40 23 C45 23 50 27 50 33 C50 43 35 55 35 55 Z" fill="#fb3b7c"/>
+                    <path class="animate-heartbeat" d="M165 55 C165 55 150 43 150 33 C150 27 155 23 160 23 C163 23 165 26 165 28 C165 26 167 23 170 23 C175 23 180 27 180 33 C180 43 165 55 165 55 Z" fill="#fb3b7c"/>
+                    <!-- Tai gấu -->
+                    <circle cx="55" cy="58" r="24" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <circle cx="55" cy="58" r="13" fill="#ffc6d9"/>
+                    <circle cx="145" cy="58" r="24" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <circle cx="145" cy="58" r="13" fill="#ffc6d9"/>
+                    <!-- Thân gấu -->
+                    <ellipse cx="100" cy="155" rx="48" ry="36" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <!-- Hai tay giơ cao ăn mừng -->
+                    <ellipse cx="48" cy="122" rx="16" ry="11" transform="rotate(-40 48 122)" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <ellipse cx="152" cy="122" rx="16" ry="11" transform="rotate(40 152 122)" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <!-- Đầu gấu -->
+                    <circle cx="100" cy="95" r="56" fill="#fff" stroke="#ff6b9b" stroke-width="4"/>
+                    <!-- Má hồng rực rỡ -->
+                    <ellipse cx="60" cy="100" rx="14" ry="8" fill="#ff6b9b" opacity="0.75"/>
+                    <ellipse cx="140" cy="100" rx="14" ry="8" fill="#ff6b9b" opacity="0.75"/>
+                    <!-- Mắt cười tít hạnh phúc (^ ^) -->
+                    <path d="M 66 88 Q 75 76 84 88" fill="none" stroke="#4a2c3a" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M 116 88 Q 125 76 134 88" fill="none" stroke="#4a2c3a" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Mũi & Miệng cười tươi -->
+                    <ellipse cx="100" cy="95" rx="6" ry="4.5" fill="#fb3b7c"/>
+                    <path d="M 88 102 Q 100 118 112 102 Z" fill="#ff6b9b" stroke="#4a2c3a" stroke-width="3" stroke-linejoin="round"/>
+                    <!-- Trái tim lớn giữa ngực -->
+                    <path d="M100 175 C100 175 72 155 72 138 C72 128 80 122 89 122 C95 122 100 127 100 131 C100 127 105 122 111 122 C120 122 128 128 128 138 C128 155 100 175 100 175 Z" fill="#fb3b7c"/>
+                </svg>
+            </div>
+
+            <h2 class="font-handwriting text-4xl sm:text-5xl font-bold text-pastel-600 mb-2">
+                Yayyy! Thương Bi nhất trên đời! 💖
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base font-medium mb-5">
+                Tớ biết ngay là Bi cũng thích tớ lắm mà! Từ giờ Bi chính thức là "cục cưng" độc quyền của tớ rồi nhé, không được đổi ý đâu nha! 🥰
+            </p>
+
+            <!-- Chọn món quà / buổi hẹn đầu tiên cho Bi -->
+            <div class="w-full bg-pastel-50/90 border-2 border-pastel-200 rounded-2xl p-4 mb-5 text-left">
+                <p class="text-xs sm:text-sm font-bold text-pastel-600 text-center mb-3">
+                    🎁 Đặc quyền cho Bi: Chọn ngay 1 kèo hẹn hò đầu tiên nhé!
+                </p>
+                <div class="grid grid-cols-2 gap-2.5 text-xs sm:text-sm">
+                    <button onclick="selectDateGift(this, 'Đi uống trà sữa full topping 🧋')" class="date-option bg-white hover:bg-pastel-100 border-2 border-pastel-200 rounded-xl p-2.5 font-bold text-slate-700 flex items-center gap-2 transition">
+                        <span class="text-lg">🧋</span>
+                        <span>Trà sữa full thạch</span>
+                    </button>
+                    <button onclick="selectDateGift(this, 'Đi ăn đồ nướng xèo xèo 🥩')" class="date-option bg-white hover:bg-pastel-100 border-2 border-pastel-200 rounded-xl p-2.5 font-bold text-slate-700 flex items-center gap-2 transition">
+                        <span class="text-lg">🥩</span>
+                        <span>Ăn đồ nướng no nê</span>
+                    </button>
+                    <button onclick="selectDateGift(this, 'Lượn phố đêm & chụp photobooth 📸')" class="date-option bg-white hover:bg-pastel-100 border-2 border-pastel-200 rounded-xl p-2.5 font-bold text-slate-700 flex items-center gap-2 transition">
+                        <span class="text-lg">📸</span>
+                        <span>Chụp Photobooth</span>
+                    </button>
+                    <button onclick="selectDateGift(this, 'Ôm Bi thật chặt 1000 cái 🤗')" class="date-option bg-white hover:bg-pastel-100 border-2 border-pastel-200 rounded-xl p-2.5 font-bold text-slate-700 flex items-center gap-2 transition">
+                        <span class="text-lg">🤗</span>
+                        <span>Ôm thật chặt 1000 cái</span>
+                    </button>
+                </div>
+
+                <!-- Chứng nhận tình yêu mini -->
+                <div id="selected-gift-box" class="mt-3 pt-3 border-t border-pastel-200 text-center hidden">
+                    <p class="text-xs text-slate-500">Chốt kèo hẹn hò cùng Bi:</p>
+                    <p id="selected-gift-text" class="text-sm sm:text-base font-bold text-pastel-600 mt-0.5"></p>
+                </div>
+            </div>
+
+            <!-- Nút sao chép lời nhắn gửi lại cho người tỏ tình hoặc xem lại -->
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full">
+                <button onclick="copyReplyMessage()" class="btn-yes text-white font-bold text-sm sm:text-base px-6 py-3 rounded-full flex items-center gap-2">
+                    <span>💌 Sao chép tin nhắn gửi tớ</span>
+                </button>
+                <button onclick="triggerHeartFireworks()" class="bg-white hover:bg-pastel-50 text-pastel-600 border-2 border-pastel-200 font-bold text-sm sm:text-base px-5 py-3 rounded-full shadow-sm transition">
+                    ✨ Bắn thêm tim
+                </button>
+            </div>
+
+            <!-- Thông báo đã copy -->
+            <div id="copy-toast" class="mt-3 text-xs sm:text-sm font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-full hidden">
+                Đã sao chép lời đồng ý! Bi dán gửi ngay cho tớ nhé 💕
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           1. HỆ THỐNG ÂM THANH DỄ THƯƠNG (WEB AUDIO API)
+           Không phụ thuộc file âm thanh bên ngoài
+        =========================================== */
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            icon.textContent = soundEnabled ? '🔊' : '🔇';
+            if (soundEnabled) {
+                playCuteTone(587.33, 'sine', 0.12);
+            }
+        }
+
+        function playCuteTone(freq, type = 'sine', duration = 0.15, delay = 0) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime + delay);
+                gain.gain.exponentialRampToValueAtTime(0.15, audioCtx.currentTime + delay + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(audioCtx.currentTime + delay);
+                osc.stop(audioCtx.currentTime + delay + duration);
+            } catch (e) {
+                // Bỏ qua nếu trình duyệt chặn tự động phát
+            }
+        }
+
+        function playEnvelopeOpenSound() {
+            playCuteTone(523.25, 'sine', 0.12, 0);    // C5
+            playCuteTone(659.25, 'sine', 0.12, 0.09); // E5
+            playCuteTone(783.99, 'sine', 0.18, 0.18); // G5
+            playCuteTone(1046.50, 'sine', 0.25, 0.28);// C6
+        }
+
+        function playDodgeSound() {
+            playCuteTone(440, 'triangle', 0.08, 0);
+            playCuteTone(620, 'triangle', 0.1, 0.06);
+        }
+
+        function playCelebrationMelody() {
+            const notes = [
+                { f: 523.25, d: 0.14, t: 0 },
+                { f: 659.25, d: 0.14, t: 0.12 },
+                { f: 783.99, d: 0.14, t: 0.24 },
+                { f: 1046.50, d: 0.3, t: 0.36 },
+                { f: 783.99, d: 0.14, t: 0.55 },
+                { f: 1046.50, d: 0.45, t: 0.70 }
+            ];
+            notes.forEach(n => playCuteTone(n.f, 'sine', n.d, n.t));
+        }
+
+        /* ==========================================
+           2. HIỆU ỨNG TRÁI TIM BAY LƠ LỬNG & CLICK NỔ TIM
+        =========================================== */
+        const heartContainer = document.getElementById('floating-hearts-container');
+        const heartSymbols = ['💖', '💗', '💓', '🌸', '💕', '🌷', '✨'];
+
+        function createFloatingHearts() {
+            const count = window.innerWidth < 640 ? 16 : 26;
+            heartContainer.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const span = document.createElement('span');
+                span.className = 'floating-heart';
+                span.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                const size = Math.random() * 16 + 14;
+                span.style.fontSize = `${size}px`;
+                span.style.left = `${Math.random() * 96}vw`;
+                span.style.animationDuration = `${Math.random() * 7 + 7}s`;
+                span.style.animationDelay = `-${Math.random() * 12}s`;
+                heartContainer.appendChild(span);
+            }
+        }
+
+        // Tạo hiệu ứng bung trái tim nhỏ tại vị trí chạm/click chuột
+        function spawnClickBurst(x, y) {
+            for (let i = 0; i < 6; i++) {
+                const el = document.createElement('div');
+                el.className = 'click-heart';
+                el.textContent = ['💖', '💕', '🌸', '✨'][i % 4];
+                el.style.left = `${x}px`;
+                el.style.top = `${y}px`;
+                el.style.fontSize = `${Math.random() * 10 + 14}px`;
+
+                const angle = (Math.PI * 2 * i) / 6 + (Math.random() * 0.5 - 0.25);
+                const distance = Math.random() * 45 + 30;
+                el.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+                el.style.setProperty('--ty', `${Math.sin(angle) * distance - 20}px`);
+
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 850);
+            }
+        }
+
+        window.addEventListener('pointerdown', (e) => {
+            spawnClickBurst(e.clientX, e.clientY);
+        });
+
+        /* ==========================================
+           3. CHUYỂN MÀN HÌNH & LOGIC NÚT CHẠY TRỐN
+        =========================================== */
+        const stepEnvelope = document.getElementById('step-envelope');
+        const stepConfession = document.getElementById('step-confession');
+        const stepSuccess = document.getElementById('step-success');
+
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo = document.getElementById('btn-no');
+        const dodgeHint = document.getElementById('dodge-hint');
+        const dodgeCountEl = document.getElementById('dodge-count');
+        const moodStatus = document.getElementById('mood-status');
+        const mascotShy = document.getElementById('mascot-shy');
+        const mascotPlead = document.getElementById('mascot-plead');
+
+        let dodgeCount = 0;
+        let yesScale = 1;
+
+        const pleadingTexts = [
+            "Ơ kìa Bi 🥺",
+            "Đừng bấm nút này mà 😭",
+            "Suy nghĩ lại đi Bi ơi!",
+            "Nút này bị hỏng rồi 😝",
+            "Bấm nút màu hồng kìa 💕",
+            "Tớ buồn thiệt đó nha 😢",
+            "Không cho từ chối đâu!",
+            "Bi thương tớ đi mà 🌷",
+            "Chạy tiếp nè bắt được đâu 🏃‍♂️",
+            "Chỉ được bấm Đồng Ý thôi! 💖"
+        ];
+
+        const moodMessages = [
+            "Ơ kìa, sao Bi lại định bấm Không đồng ý thế 🥺",
+            "Gấu nhỏ sắp khóc nhè rồi, Bi bấm nút màu hồng đi mà 😭",
+            "Trái tim tớ đang rung rinh chờ Bi gật đầu đó 💓",
+            "Bi ơi đừng trêu tớ nữa, đồng ý làm người yêu tớ nha! 🌸"
+        ];
+
+        function openEnvelope() {
+            playEnvelopeOpenSound();
+            stepEnvelope.classList.add('opacity-0', 'scale-90');
+            setTimeout(() => {
+                stepEnvelope.classList.add('hidden');
+                stepConfession.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    stepConfession.classList.remove('opacity-0', 'scale-95');
+                    stepConfession.classList.add('opacity-100', 'scale-100');
+                });
+            }, 350);
+        }
+
+        // Hàm làm nút "Không đồng ý" nhảy sang vị trí an toàn trong màn hình
+        function moveNoButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            dodgeCount++;
+            playDodgeSound();
+
+            // Hiển thị biểu cảm mếu máo dễ thương
+            mascotShy.classList.add('hidden');
+            mascotPlead.classList.remove('hidden');
+
+            // Cập nhật câu năn nỉ
+            btnNo.textContent = pleadingTexts[(dodgeCount - 1) % pleadingTexts.length];
+            moodStatus.textContent = moodMessages[(dodgeCount - 1) % moodMessages.length];
+            dodgeHint.classList.remove('hidden');
+            dodgeCountEl.textContent = dodgeCount;
+
+            // Phóng to nút Đồng ý mỗi lần Bi định bấm Không
+            yesScale = Math.min(1 + dodgeCount * 0.12, 1.85);
+            btnYes.style.transform = `scale(${yesScale})`;
+
+            const yesTexts = [
+                "Đồng ý luôn! 💖",
+                "Đồng ý đi mà Bi ơi! 💕",
+                "Bấm vào đây nè Bi! 🥰",
+                "Chốt đơn làm người yêu tớ! 💍",
+                "Thương Bi nhất, bấm đây nha! 💝"
+            ];
+            btnYes.innerHTML = `<span>${yesTexts[Math.min(dodgeCount - 1, yesTexts.length - 1)]}</span>`;
+
+            // Chuyển nút Không đồng ý sang fixed để chạy tự do nhưng luôn nằm trong màn hình
+            if (btnNo.style.position !== 'fixed') {
+                const rect = btnNo.getBoundingClientRect();
+                btnNo.style.position = 'fixed';
+                btnNo.style.left = `${rect.left}px`;
+                btnNo.style.top = `${rect.top}px`;
+                document.body.appendChild(btnNo);
+            }
+
+            const btnRect = btnNo.getBoundingClientRect();
+            const yesRect = btnYes.getBoundingClientRect();
+            const padding = 20;
+
+            const maxX = window.innerWidth - btnRect.width - padding;
+            const maxY = window.innerHeight - btnRect.height - padding;
+
+            let newX = padding;
+            let newY = padding;
+            let tries = 0;
+
+            // Tìm vị trí không đè lên nút Đồng ý
+            do {
+                newX = Math.max(padding, Math.floor(Math.random() * maxX));
+                newY = Math.max(padding + 40, Math.floor(Math.random() * maxY));
+                tries++;
+            } while (
+                tries < 15 &&
+                newX < yesRect.right + 25 &&
+                newX + btnRect.width > yesRect.left - 25 &&
+                newY < yesRect.bottom + 25 &&
+                newY + btnRect.height > yesRect.top - 25
+            );
+
+            btnNo.style.left = `${newX}px`;
+            btnNo.style.top = `${newY}px`;
+        }
+
+        // Bắt sự kiện trên cả máy tính (hover) và điện thoại (chạm)
+        btnNo.addEventListener('mouseenter', moveNoButton);
+        btnNo.addEventListener('touchstart', moveNoButton, { passive: false });
+        btnNo.addEventListener('click', moveNoButton);
+
+        /* ==========================================
+           4. MÀN HÌNH ĐỒNG Ý & PHÁO HOA TRÁI TIM
+        =========================================== */
+        let chosenGift = "Đi uống trà sữa full topping 🧋";
+
+        function acceptLove() {
+            playCelebrationMelody();
+
+            // Ẩn nút Không đồng ý nếu nó đang ở ngoài body
+            btnNo.classList.add('hidden');
+
+            stepConfession.classList.add('opacity-0', 'scale-90');
+            setTimeout(() => {
+                stepConfession.classList.add('hidden');
+                stepSuccess.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    stepSuccess.classList.remove('opacity-0', 'scale-95');
+                    stepSuccess.classList.add('opacity-100', 'scale-100');
+                });
+                triggerHeartFireworks();
+            }, 350);
+        }
+
+        function selectDateGift(btnEl, giftName) {
+            playCuteTone(783.99, 'sine', 0.15);
+            chosenGift = giftName;
+
+            document.querySelectorAll('.date-option').forEach(b => {
+                b.classList.remove('bg-pastel-200', 'border-pastel-500', 'text-pastel-600');
+                b.classList.add('bg-white', 'border-pastel-200', 'text-slate-700');
+            });
+
+            btnEl.classList.remove('bg-white', 'border-pastel-200', 'text-slate-700');
+            btnEl.classList.add('bg-pastel-200', 'border-pastel-500', 'text-pastel-600');
+
+            const box = document.getElementById('selected-gift-box');
+            const text = document.getElementById('selected-gift-text');
+            box.classList.remove('hidden');
+            text.textContent = `✨ ${giftName} ✨`;
+        }
+
+        function copyReplyMessage() {
+            const msg = `Bi đồng ý làm người yêu cậu rồi nha! 💖 Hẹn cậu kèo đầu tiên: "${chosenGift}" nhé! 🥰`;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = msg;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            playCuteTone(880, 'sine', 0.15);
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+
+        /* ==========================================
+           5. CANVAS PHÁO HOA TRÁI TIM LUNG LINH
+        =========================================== */
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animId = null;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        function triggerHeartFireworks() {
+            resizeCanvas();
+            canvas.classList.remove('hidden');
+
+            const colors = ['#ff4d8d', '#ff7eb3', '#ff9ebb', '#fb3b7c', '#ffd1dc', '#ffb347'];
+            for (let i = 0; i < 85; i++) {
+                particles.push({
+                    x: canvas.width / 2 + (Math.random() * 160 - 80),
+                    y: canvas.height / 2 + (Math.random() * 80 - 40),
+                    vx: (Math.random() - 0.5) * 13,
+                    vy: (Math.random() - 0.85) * 14,
+                    size: Math.random() * 10 + 7,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.15,
+                    alpha: 1,
+                    isHeart: Math.random() > 0.25
+                });
+            }
+
+            if (!animId) {
+                animateConfetti();
+            }
+        }
+
+        function drawMiniHeart(ctx, size) {
+            ctx.beginPath();
+            const topCurveHeight = size * 0.3;
+            ctx.moveTo(0, topCurveHeight);
+            ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+            ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.4, 0, size);
+            ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.4, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+            ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.26; // Trọng lực nhẹ
+                p.vx *= 0.99;
+                p.rotation += p.vRot;
+                p.alpha -= 0.008;
+
+                if (p.alpha <= 0 || p.y > canvas.height + 40) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, p.alpha);
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.fillStyle = p.color;
+
+                if (p.isHeart) {
+                    drawMiniHeart(ctx, p.size);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size / 2.2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            if (particles.length > 0) {
+                animId = requestAnimationFrame(animateConfetti);
+            } else {
+                animId = null;
+                canvas.classList.add('hidden');
+            }
+        }
+
+        // Khởi chạy hiệu ứng khi tải trang
+        window.onload = function () {
+            createFloatingHearts();
+            resizeCanvas();
+        };
+    </script>
+</body>
+</html>
